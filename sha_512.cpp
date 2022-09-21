@@ -99,7 +99,7 @@ void convert_binary(word_struct *shift,char text[],int init)
 {
    for(int k=0;k<8;k++){
         int i=0,temp_bin[8],value = (int)text[init++],index=0,x=0;
-        //cout<<" "<<value<<" ";
+        //cout<<value;
         for(i=0; value>0; i++)    
         {    
             temp_bin[i]=value%2;    
@@ -114,7 +114,8 @@ void convert_binary(word_struct *shift,char text[],int init)
                 shift->byte[k*8 + index] = temp_bin[i--];
 
             index++;
-        }  
+        }
+        //cout<<endl;  
    }
 }
 
@@ -180,10 +181,12 @@ void make_word(char text[], int initial)
 {
     int index=0,k=0;
     for(int i=0;i<16;i++){
-        convert_binary(&word[0],text,initial+(i*8));
+        convert_binary(&word[i],text,initial+(i*8));
+        // for(int p=0;p<64;p++)
+        //     cout<<
     }
 
-    for(int i=6;i<64;i++){
+    for(int i=16;i<64;i++){
         wc[0] = sigma_function(&word[i-2],1,8,7);
         wc[1] = word[i-7];
         wc[2] = sigma_function(&word[i-15],19,61,6);
@@ -406,7 +409,7 @@ void input()
         if(i == pad_start)
             text[i] = (char)128;
         else
-            text[i] = (char)0;   
+            text[i] = (char)0;    
     }
     
 
@@ -426,3 +429,5 @@ int main()
 {   
     input();
 }
+// 6a09e66033202023bb67ae8244564e103c6ef3753e081100a54ff53d9f81dfda270cc1265392b215bbd4b4244dbeb3ac5dc9442c575fc02da408bd91031a2933
+// 6a09e66033202023bb67ae8244564e103c6ef3753e081100a54ff53d9f81dfda270cc1265392b215bbd4b4244dbeb3ac5dc9442c575fc02da408bd91031a2933
